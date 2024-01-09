@@ -13,8 +13,9 @@ import io.netty.handler.codec.DelimiterBasedFrameDecoder;
 import io.netty.handler.codec.Delimiters;
 import io.netty.handler.codec.string.StringDecoder;
 import io.netty.handler.codec.string.StringEncoder;
-import org.iahzznil.handler.ChatServerHandler;
+import org.iahzznil.handler.HeartbeatServerHandler;
 import org.iahzznil.handler.SimpleChatServerHandler;
+import org.iahzznil.initializer.HeartbeatHandlerInitializer;
 
 import java.nio.charset.StandardCharsets;
 
@@ -36,6 +37,7 @@ public class LocalChatServer {
             ServerBootstrap b = new ServerBootstrap(); // (2)
             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class) // (3)
+                    .childHandler(new HeartbeatHandlerInitializer())
                     .childHandler(new ChannelInitializer<SocketChannel>() { // (4)
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
