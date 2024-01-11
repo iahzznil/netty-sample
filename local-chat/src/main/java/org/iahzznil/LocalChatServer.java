@@ -37,7 +37,7 @@ public class LocalChatServer {
             ServerBootstrap b = new ServerBootstrap(); // (2)
             b.group(bossGroup, workerGroup)
                     .channel(NioServerSocketChannel.class) // (3)
-                    .childHandler(new HeartbeatHandlerInitializer())
+//                    .childHandler(new HeartbeatHandlerInitializer())
                     .childHandler(new ChannelInitializer<SocketChannel>() { // (4)
                         @Override
                         public void initChannel(SocketChannel ch) throws Exception {
